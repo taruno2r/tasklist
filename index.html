@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="add-to-do">
+      <h1 class="title-primary">Task List</h1>
+      <form class="form">
+        <input
+          class="form-input"
+          type="text"
+          placeholder="Type your task here..."
+          required
+          autofocus
+        />
+        <button class="form-button">Add</button>
+      </form>
+    </section>
+    <div class="active-container">
+      <p class="title-active">Active Tasks</p>
+      <section class="to-do-list">
+        <div class="to-do-list-item">
+          <p class="item-text">Add text here</p>
+          <span class="mark-done link">Mark as Done</span>
+          <button class="item-button">
+            <ion-icon class="icon" name="close-outline"></ion-icon>
+          </button>
+        </div>
+        <div class="to-do-list-item">
+          <p class="item-text">Add text here</p>
+          <span class="mark-done link">Mark as Done</span>
+          <button class="item-button">
+            <ion-icon class="icon" name="close-outline"></ion-icon>
+          </button>
+        </div>
+      </section>
+    </div>
+    <div class="completed-container">
+      <p class="title-completed">
+        Completed Tasks <span class="hide-show link">Show</span>
+      </p>
+      <section class="completed-list">
+        <div class="completed-list-item">
+          <p class="item-text">Add text here</p>
+          <button class="item-button">
+            <ion-icon class="icon" name="close-outline"></ion-icon>
+          </button>
+        </div>
+        <div class="completed-list-item">
+          <p class="item-text">Add text here</p>
+          <button class="item-button">
+            <ion-icon class="icon" name="close-outline"></ion-icon>
+          </button>
+        </div>
+      </section>
+    </div>
+    <script src="script.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
