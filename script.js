@@ -46,7 +46,7 @@ const displayToDo = function (text) {
         <p class="item-text item-${count}">${text}</p>
         <span class="mark-done link">Mark as Done</span>
         <button class="item-button">
-          <ion-icon class="icon" name="close-outline"></ion-icon>
+          <ion-icon class="icon" name="trash-outline"></ion-icon>
         </button>
       </div>`;
   activeContainer.insertAdjacentHTML("afterbegin", html);
