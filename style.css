@@ -15,7 +15,6 @@ body {
   max-width: 50rem;
   margin: 0 auto;
   padding: 0 1rem 1rem 1rem;
-  /* background-color: red; */
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,7 +22,35 @@ body {
   gap: 2rem;
 }
 
-.add-to-do {
+/**********************/
+/* REUSABLE STYLES */
+/**********************/
+
+.title-primary {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.link {
+  font-size: 0.9rem;
+  color: #1971c2;
+  border-bottom: 1px solid #1971c2;
+}
+
+.link:hover,
+.link:active {
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+}
+
+/**********************/
+/* COMPONENTS */
+/**********************/
+
+/* FORM INPUT */
+
+.form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,17 +67,6 @@ body {
 .completed-container {
   max-height: 30vh;
   overflow: auto;
-}
-
-/* .active-container::-webkit-scrollbar,
-.completed-container::-webkit-scrollbar {
-  display: none;
-} */
-
-.title-primary {
-  font-size: 2.4rem;
-  line-height: 1.2;
-  font-weight: 700;
 }
 
 .form {
@@ -93,8 +109,10 @@ body {
   cursor: pointer;
 }
 
-.title-active,
-.title-completed {
+/* TASK LIST */
+
+.label-active,
+.label-completed {
   width: 80%;
   font-size: 0.9rem;
   background-color: #fff;
@@ -136,20 +154,8 @@ body {
   flex: 1;
 }
 
-.link {
-  font-size: 0.9rem;
-  color: #1971c2;
-  border-bottom: 1px solid #1971c2;
-}
-
-.link:hover,
-.link:active {
-  cursor: pointer;
-  border-bottom: 1px solid transparent;
-}
-
-.item-button,
-.item-button {
+.icon-button,
+.icon-button {
   height: 2rem;
   width: 2rem;
   display: flex;
@@ -160,14 +166,14 @@ body {
   background-color: #fff;
 }
 
-.item-button:hover,
-.item-button:active {
+.icon-button:hover,
+.icon-button:active {
   background-color: #e03131;
   cursor: pointer;
 }
 
-.item-button:hover .icon,
-.item-button:active .icon {
+.icon-button:hover .icon,
+.icon-button:active .icon {
   color: #fff;
 }
 

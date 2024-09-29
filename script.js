@@ -9,8 +9,8 @@ let count = 0;
 const formInput = document.querySelector(".form-input");
 const formButton = document.querySelector(".form-button");
 
-const labelActive = document.querySelector(".title-active");
-const labelCompleted = document.querySelector(".title-completed");
+const labelActive = document.querySelector(".label-active");
+const labelCompleted = document.querySelector(".label-completed");
 
 const activeContainer = document.querySelector(".to-do-list");
 const completedContainer = document.querySelector(".completed-list");
@@ -20,7 +20,7 @@ const completedItem = document.querySelectorAll(".completed-list-item");
 const labelItem = document.querySelectorAll(".item-text");
 const markDone = document.querySelectorAll(".mark-done");
 const hideShowCompleted = document.querySelector(".hide-show");
-const deleteButton = document.querySelector(".item-button");
+const deleteButton = document.querySelector(".icon-button");
 
 // INITIAL PAGE LOAD
 activeContainer.style.opacity = 100;
@@ -28,8 +28,6 @@ labelItem.forEach((item, i) => (item.textContent = List[i]));
 activeContainer.innerHTML = "";
 completedContainer.innerHTML = "";
 labelCompleted.style.display = labelActive.style.display = "none";
-// labelActive.outerHTML = "";
-// labelCompleted.outerHTML = "";
 
 let hidden = true;
 
@@ -45,7 +43,7 @@ const displayToDo = function (text) {
   const html = `<div class="to-do-list-item">
         <p class="item-text item-${count}">${text}</p>
         <span class="mark-done link">Mark as Done</span>
-        <button class="item-button">
+        <button class="icon-button">
           <ion-icon class="icon" name="trash-outline"></ion-icon>
         </button>
       </div>`;
@@ -81,7 +79,7 @@ activeContainer.addEventListener("click", function (e) {
     }
 
     const item = e.target.closest(".to-do-list-item");
-    const iconButton = item.querySelector(".item-button");
+    const iconButton = item.querySelector(".icon-button");
 
     e.target.style.display = "none";
     iconButton.style.display = "none";
@@ -100,12 +98,11 @@ activeContainer.addEventListener("click", function (e) {
 // DELETING AN ITEM
 activeContainer.addEventListener("click", function (e) {
   if (
-    e.target.classList.contains("item-button") ||
+    e.target.classList.contains("icon-button") ||
     e.target.classList.contains("icon")
   ) {
     e.preventDefault();
     const item = e.target.closest(".to-do-list-item");
-    // item.style.display = "none";
     item.outerHTML = "";
   }
   if (activeContainer.innerHTML == "") {
