@@ -108,8 +108,10 @@ activeContainer.addEventListener("click", function (e) {
     ).format(now)}`;
 
     e.target.style.display = "none";
-    iconButton.style.display = "none";
-    e.target.closest(".to-do-list-item").style.opacity = "40%";
+    // iconButton.style.display = "none";
+    e.target
+      .closest(".to-do-list-item")
+      .querySelector(".text-container").style.opacity = "40%";
     completedContainer.insertBefore(
       e.target.closest(".to-do-list-item"),
       completedContainer.firstChild
@@ -133,6 +135,20 @@ activeContainer.addEventListener("click", function (e) {
   }
   if (activeContainer.innerHTML == "") {
     labelActive.style.display = "none";
+  }
+});
+
+completedContainer.addEventListener("click", function (e) {
+  if (
+    e.target.classList.contains("icon-button") ||
+    e.target.classList.contains("icon")
+  ) {
+    e.preventDefault();
+    const item = e.target.closest(".to-do-list-item");
+    item.outerHTML = "";
+  }
+  if (completedContainer.innerHTML == "") {
+    labelCompleted.style.display = "none";
   }
 });
 
