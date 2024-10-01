@@ -3,8 +3,6 @@
 // DATA
 const List = ["Buy Groceries", "Go to Gym Today"];
 
-let count = 0;
-
 // ELEMENTS
 const formInput = document.querySelector(".form-input");
 const formButton = document.querySelector(".form-button");
@@ -41,7 +39,7 @@ const displayToDo = function (text) {
     labelActive.style.display = "block";
   }
   const html = `<div class="to-do-list-item">
-        <p class="item-text item-${count}">${text}</p>
+        <p class="item-text">${text}</p>
         <span class="mark-done link">Mark as Done</span>
         <button class="icon-button">
           <ion-icon class="icon" name="trash-outline"></ion-icon>
@@ -60,7 +58,6 @@ formButton.addEventListener("click", function (e) {
 
   const input = formInput.value;
   if (input != "") {
-    count++;
     List.push(input);
     displayToDo(input);
     formInput.value = "";
