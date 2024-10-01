@@ -56,21 +56,11 @@ body {
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  padding: 1rem 0;
-}
-
-.active-container {
-  overflow: auto;
-  flex: 1;
-}
-
-.completed-container {
-  max-height: 30vh;
-  overflow: auto;
+  padding: 1rem 4rem;
 }
 
 .form {
-  width: 80%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -111,9 +101,21 @@ body {
 
 /* TASK LIST */
 
+.active-container {
+  overflow: auto;
+  flex: 1;
+  padding: 0rem 4rem 1rem 4rem;
+}
+
+.completed-container {
+  max-height: 30vh;
+  overflow: auto;
+  padding: 0rem 4rem 1rem 4rem;
+}
+
 .label-active,
 .label-completed {
-  width: 80%;
+  /* width: 80%; */
   font-size: 0.9rem;
   background-color: #fff;
   color: #999;
@@ -127,6 +129,11 @@ body {
   z-index: 1;
 }
 
+.label-completed {
+  padding-top: 1.2rem;
+  border-top: 1px solid #aaa;
+}
+
 .to-do-list,
 .completed-list {
   display: flex;
@@ -138,7 +145,7 @@ body {
 
 .to-do-list-item,
 .completed-list-item {
-  width: 80%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -146,6 +153,11 @@ body {
   border-bottom: 1px solid #eee;
   opacity: 100;
   gap: 2rem;
+}
+
+.to-do-list-item:last-child,
+.completed-list-item:last-child {
+  border-bottom: none;
 }
 
 .item-text {
