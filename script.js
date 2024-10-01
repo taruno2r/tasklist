@@ -38,8 +38,23 @@ const displayToDo = function (text) {
   if (activeContainer.innerHTML == "") {
     labelActive.style.display = "block";
   }
+  const now = new Date();
+  const options = {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  };
   const html = `<div class="to-do-list-item">
+        <div class="text-container">
+        <p class="item-date">${new Intl.DateTimeFormat(
+          navigator.locale,
+          options
+        ).format(now)}</p>
         <p class="item-text">${text}</p>
+          </div>
         <span class="mark-done link">Mark as Done</span>
         <button class="icon-button">
           <ion-icon class="icon" name="trash-outline"></ion-icon>
@@ -69,6 +84,15 @@ formButton.addEventListener("click", function (e) {
 activeContainer.addEventListener("click", function (e) {
   if (e.target && e.target.classList.contains("mark-done")) {
     e.preventDefault();
+    const now = new Date();
+    const options = {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    };
 
     if (completedContainer.innerHTML == "") {
       labelCompleted.style.display = "flex";
@@ -77,6 +101,11 @@ activeContainer.addEventListener("click", function (e) {
 
     const item = e.target.closest(".to-do-list-item");
     const iconButton = item.querySelector(".icon-button");
+    const itemCompletedDateTime = item.querySelector(".item-date");
+    itemCompletedDateTime.textContent = `${new Intl.DateTimeFormat(
+      navigator.locale,
+      options
+    ).format(now)}`;
 
     e.target.style.display = "none";
     iconButton.style.display = "none";
