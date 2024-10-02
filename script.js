@@ -20,18 +20,39 @@ const markDone = document.querySelectorAll(".mark-done");
 const hideShowCompleted = document.querySelector(".hide-show");
 const deleteButton = document.querySelector(".icon-button");
 
+const toast = document.querySelector(".toast-container");
+
 // INITIAL PAGE LOAD
 activeContainer.style.opacity = 100;
 labelItem.forEach((item, i) => (item.textContent = List[i]));
 activeContainer.innerHTML = "";
 completedContainer.innerHTML = "";
-labelCompleted.style.display = labelActive.style.display = "none";
+labelCompleted.style.display =
+  labelActive.style.display =
+  toast.style.display =
+    "none";
 
 let hidden = true;
+let toastClicked = false;
 
 //////////////////
 //FUNCTIONS
 //////////////////
+
+// TOAST MESSAGE
+const showToast = function () {
+  toast.style.display = "block";
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 5000);
+  toast.addEventListener("click", function (e) {
+    if (e.target.classList.contains("toast-button")) {
+      toastClicked = true;
+      console.log(toastClicked);
+      return toastClicked;
+    }
+  });
+};
 
 // DISPLAY THE ITEM
 const displayToDo = function (text) {
@@ -124,6 +145,7 @@ activeContainer.addEventListener("click", function (e) {
 });
 
 // DELETING AN ITEM
+
 activeContainer.addEventListener("click", function (e) {
   if (
     e.target.classList.contains("icon-button") ||

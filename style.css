@@ -214,7 +214,6 @@ body {
 
 .toast-container {
   padding: 0rem 4rem;
-  display: none;
 }
 
 .toast {
@@ -241,4 +240,10 @@ body {
   color: #4dabf7;
   border: none;
   border-radius: 4px;
+}
+
+.toast-button:active,
+.toast-button:hover {
+  color: #74c0fc;
+  cursor: pointer;
 }
