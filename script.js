@@ -35,9 +35,19 @@ labelCompleted.style.display =
 let hidden = true;
 let toastClicked = false;
 
+adjustViewportHeight();
+
 //////////////////
 //FUNCTIONS
 //////////////////
+
+// Fix 100vh viewport for Mobiles
+function adjustViewportHeight() {
+  // Get the actual height of the viewport excluding the browser UI
+  const vh = window.innerHeight * 0.01;
+  // Set a CSS variable to reflect this value
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+}
 
 // TOAST MESSAGE
 const showToast = function () {
