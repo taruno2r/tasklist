@@ -16,7 +16,6 @@ const completedContainer = document.querySelector(".completed-list");
 const listItem = document.querySelectorAll(".to-do-list-item");
 const completedItem = document.querySelectorAll(".completed-list-item");
 const labelItem = document.querySelectorAll(".item-text");
-const markDone = document.querySelectorAll(".mark-done");
 const hideShowCompleted = document.querySelector(".hide-show");
 const deleteButton = document.querySelector(".icon-button");
 const iconDone = document.querySelectorAll(".icon-done");
@@ -141,8 +140,6 @@ activeContainer.addEventListener("click", function (e) {
       options
     ).format(now)}`;
 
-    // e.target.style.display = "none";
-    // iconButton.style.display = "none";
     e.target
       .closest(".to-do-list-item")
       .querySelector(".text-container").style.opacity = "40%";
@@ -157,8 +154,37 @@ activeContainer.addEventListener("click", function (e) {
   }
 });
 
-// DELETING AN ITEM
+// MARKING AN ITEM AS NOT DONE
+completedContainer.addEventListener("click", function (e) {
+  if (e.target && e.target.classList.contains("icon-done")) {
+    e.preventDefault();
+    const now = new Date();
+    const options = {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    };
+    const item = e.target.closest(".to-do-list-item");
+    const itemCompletedDateTime = item.querySelector(".item-date");
+    itemCompletedDateTime.textContent = `${new Intl.DateTimeFormat(
+      navigator.locale,
+      options
+    ).format(now)}`;
 
+    e.target
+      .closest(".to-do-list-item")
+      .querySelector(".text-container").style.opacity = "100%";
+    activeContainer.insertBefore(
+      e.target.closest(".to-do-list-item"),
+      activeContainer.firstChild
+    );
+  }
+});
+
+// DELETING AN ITEM
 activeContainer.addEventListener("click", function (e) {
   if (
     e.target.classList.contains("icon-button") ||
