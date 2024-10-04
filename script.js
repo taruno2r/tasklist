@@ -78,7 +78,6 @@ const displayToDo = function (text) {
         ).format(now)}</p>
         <p class="item-text">${text}</p>
           </div>
-        <span class="mark-done link">Mark as Done</span>
         <button class="icon-button">
           <ion-icon class="icon" name="trash-outline"></ion-icon>
         </button>
@@ -117,7 +116,7 @@ formButton.addEventListener("click", function (e) {
 
 // MARKING AN ITEM COMPLETE
 activeContainer.addEventListener("click", function (e) {
-  if (e.target && e.target.classList.contains("mark-done")) {
+  if (e.target && e.target.classList.contains("icon-done")) {
     e.preventDefault();
     const now = new Date();
     const options = {
@@ -142,7 +141,7 @@ activeContainer.addEventListener("click", function (e) {
       options
     ).format(now)}`;
 
-    e.target.style.display = "none";
+    // e.target.style.display = "none";
     // iconButton.style.display = "none";
     e.target
       .closest(".to-do-list-item")
