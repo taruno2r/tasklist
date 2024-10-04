@@ -188,6 +188,12 @@ completedContainer.addEventListener("click", function (e) {
       activeContainer.firstChild
     );
   }
+
+  if (completedContainer.innerHTML == "") {
+    labelCompleted.style.display = "none";
+    hideShowCompleted.textContent = "Show";
+    hidden = true;
+  }
 });
 
 // DELETING AN ITEM
@@ -216,6 +222,8 @@ completedContainer.addEventListener("click", function (e) {
   }
   if (completedContainer.innerHTML == "") {
     labelCompleted.style.display = "none";
+    hideShowCompleted.textContent = "Show";
+    hidden = true;
   }
 });
 
