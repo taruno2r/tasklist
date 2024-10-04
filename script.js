@@ -140,6 +140,10 @@ activeContainer.addEventListener("click", function (e) {
       options
     ).format(now)}`;
 
+    e.target.style.color = "#2f9e44";
+    e.target.setAttribute("name", "checkmark-done-outline");
+    e.target.setAttribute("background-color", "#2f9e44");
+
     e.target
       .closest(".to-do-list-item")
       .querySelector(".text-container").style.opacity = "40%";
@@ -173,6 +177,8 @@ completedContainer.addEventListener("click", function (e) {
       navigator.locale,
       options
     ).format(now)}`;
+
+    e.target.style.color = "#333";
 
     e.target
       .closest(".to-do-list-item")

@@ -211,6 +211,7 @@ body {
 .icon-done {
   height: 1.6rem;
   width: 1.6rem;
+  color: #333;
 }
 
 .icon-done:hover,
