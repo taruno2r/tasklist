@@ -19,6 +19,7 @@ const labelItem = document.querySelectorAll(".item-text");
 const markDone = document.querySelectorAll(".mark-done");
 const hideShowCompleted = document.querySelector(".hide-show");
 const deleteButton = document.querySelector(".icon-button");
+const iconDone = document.querySelectorAll(".icon-done");
 
 const toast = document.querySelector(".toast-container");
 
@@ -69,6 +70,7 @@ const displayToDo = function (text) {
     second: "numeric",
   };
   const html = `<div class="to-do-list-item">
+        <ion-icon class="icon-done" name="ellipse-outline"></ion-icon>
         <div class="text-container">
         <p class="item-date">${new Intl.DateTimeFormat(
           navigator.locale,
@@ -88,7 +90,19 @@ const displayToDo = function (text) {
 // EVENT HANDLERS
 //////////////////
 
-// Adding AN ITEM
+// HOVER ON CIRCLE
+
+activeContainer.addEventListener("mouseover", (e) => {
+  if (e.target.classList.contains("icon-done"))
+    e.target.setAttribute("name", "checkmark-outline");
+});
+
+activeContainer.addEventListener("mouseout", (e) => {
+  if (e.target.classList.contains("icon-done"))
+    e.target.setAttribute("name", "ellipse-outline");
+});
+
+// ADDING A NEW TASK
 formButton.addEventListener("click", function (e) {
   e.preventDefault();
 

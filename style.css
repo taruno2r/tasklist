@@ -208,6 +208,16 @@ body {
   color: #333;
 }
 
+.icon-done {
+  height: 1.6rem;
+  width: 1.6rem;
+}
+
+.icon-done:hover,
+.icon-done:active {
+  cursor: pointer;
+}
+
 /**********************/
 /* TOAST */
 /**********************/
