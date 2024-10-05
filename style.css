@@ -112,9 +112,7 @@ body {
 .completed-container {
   max-height: 30vh;
   overflow: auto;
-  padding-left: 4rem;
-  padding-right: 4rem;
-  padding-bottom: env(safe-area-inset-bottom, 0);
+  padding: 0rem 4rem;
 }
 
 .label-active,
