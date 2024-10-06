@@ -81,7 +81,6 @@ const displayToDo = function (text) {
 //////////////////
 
 // HOVER ON CIRCLE
-
 activeContainer.addEventListener("mouseover", (e) => {
   if (e.target.classList.contains("icon-done"))
     e.target.setAttribute("name", "checkmark-outline");
