@@ -1,8 +1,5 @@
 "use strict";
 
-// DATA
-const List = ["Buy Groceries", "Go to Gym Today"];
-
 // ELEMENTS
 const formInput = document.querySelector(".form-input");
 const formButton = document.querySelector(".form-button");
@@ -13,18 +10,12 @@ const labelCompleted = document.querySelector(".label-completed");
 const activeContainer = document.querySelector(".to-do-list");
 const completedContainer = document.querySelector(".completed-list");
 
-const listItem = document.querySelectorAll(".to-do-list-item");
-const completedItem = document.querySelectorAll(".completed-list-item");
-const labelItem = document.querySelectorAll(".item-text");
 const hideShowCompleted = document.querySelector(".hide-show");
-const deleteButton = document.querySelector(".icon-button");
-const iconDone = document.querySelectorAll(".icon-done");
 
 const toast = document.querySelector(".toast-container");
 
 // INITIAL PAGE LOAD
-activeContainer.style.opacity = 100;
-labelItem.forEach((item, i) => (item.textContent = List[i]));
+
 activeContainer.innerHTML = "";
 completedContainer.innerHTML = "";
 labelCompleted.style.display =
@@ -106,7 +97,6 @@ formButton.addEventListener("click", function (e) {
 
   const input = formInput.value;
   if (input != "") {
-    List.push(input);
     displayToDo(input);
     formInput.value = "";
     formInput.focus();
