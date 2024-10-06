@@ -16,7 +16,6 @@ const hideShowCompleted = document.querySelector(".hide-show");
 const toast = document.querySelector(".toast-container");
 
 // INITIAL PAGE LOAD
-
 activeContainer.innerHTML = "";
 completedContainer.innerHTML = "";
 labelCompleted.style.display =
