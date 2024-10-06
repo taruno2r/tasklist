@@ -1,6 +1,8 @@
 "use strict";
 
 // ELEMENTS
+const body = document.querySelector("body");
+
 const formInput = document.querySelector(".form-input");
 const formButton = document.querySelector(".form-button");
 
@@ -186,7 +188,7 @@ completedContainer.addEventListener("click", function (e) {
 });
 
 // DELETING AN ITEM
-activeContainer.addEventListener("click", function (e) {
+body.addEventListener("click", function (e) {
   if (
     e.target.classList.contains("icon-button") ||
     e.target.classList.contains("icon")
@@ -197,17 +199,6 @@ activeContainer.addEventListener("click", function (e) {
   }
   if (activeContainer.innerHTML == "") {
     labelActive.style.display = "none";
-  }
-});
-
-completedContainer.addEventListener("click", function (e) {
-  if (
-    e.target.classList.contains("icon-button") ||
-    e.target.classList.contains("icon")
-  ) {
-    e.preventDefault();
-    const item = e.target.closest(".to-do-list-item");
-    item.outerHTML = "";
   }
   if (completedContainer.innerHTML == "") {
     labelCompleted.style.display = "none";
