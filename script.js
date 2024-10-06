@@ -9,7 +9,6 @@ const labelCompleted = document.querySelector(".label-completed");
 
 const activeContainer = document.querySelector(".to-do-list");
 const completedContainer = document.querySelector(".completed-list");
-
 const hideShowCompleted = document.querySelector(".hide-show");
 
 const toast = document.querySelector(".toast-container");
