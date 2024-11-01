@@ -18,7 +18,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 2rem;
+  /* gap: 2rem; */
 }
 
 /**********************/
@@ -103,28 +103,27 @@ body {
 /**********************/
 .tab-container {
   overflow: auto;
-  padding: 0rem 4rem 1rem 4rem;
+  padding: 0rem 4rem;
 }
 
 .tab {
   list-style-type: none;
   display: flex;
-  gap: 2rem;
 }
 
 .tab-item {
-  padding: 0.5rem 1rem;
+  padding: 1rem 2rem;
   color: #999;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .tab-item:hover {
   cursor: pointer;
+  background-color: #f7f7f7;
 }
 
 .tab-current {
   color: #666;
-  font-weight: 500;
   border-bottom: 2px solid #666;
 }
 
@@ -136,7 +135,7 @@ body {
 .completed-container {
   overflow: auto;
   flex: 1;
-  padding: 0rem 4rem 1rem 4rem;
+  padding: 1rem 4rem;
 }
 
 /* .completed-container {
