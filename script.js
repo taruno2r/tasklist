@@ -6,25 +6,24 @@ const body = document.querySelector("body");
 const formInput = document.querySelector(".form-input");
 const formButton = document.querySelector(".form-button");
 
-const labelActive = document.querySelector(".label-active");
-const labelCompleted = document.querySelector(".label-completed");
+const tabs = document.querySelector(".tab-container");
+const tabActive = document.querySelector(".tab-active");
+const tabCompleted = document.querySelector(".tab-completed");
 
-const activeContainer = document.querySelector(".to-do-list");
-const completedContainer = document.querySelector(".completed-list");
-const hideShowCompleted = document.querySelector(".hide-show");
+const activeContainer = document.querySelector(".active-container");
+const completedContainer = document.querySelector(".completed-container");
 
 const toast = document.querySelector(".toast-container");
 
 // INITIAL PAGE LOAD
 activeContainer.innerHTML = "";
 completedContainer.innerHTML = "";
-labelCompleted.style.display =
-  labelActive.style.display =
-  toast.style.display =
-    "none";
+toast.style.display = "none";
 
 let hidden = true;
 let toastClicked = false;
+let activeCount = 0;
+let completedCount = 0;
 
 //////////////////
 //FUNCTIONS
@@ -48,7 +47,7 @@ const showToast = function () {
 // DISPLAY THE ITEM
 const displayToDo = function (text) {
   if (activeContainer.innerHTML == "") {
-    labelActive.style.display = "block";
+    // labelActive.style.display = "block";
   }
   const now = new Date();
   const options = {
@@ -99,6 +98,8 @@ formButton.addEventListener("click", function (e) {
     displayToDo(input);
     formInput.value = "";
     formInput.focus();
+    activeCount++;
+    tabActive.textContent = `Active (${activeCount})`;
   }
 });
 
@@ -117,7 +118,6 @@ activeContainer.addEventListener("click", function (e) {
     };
 
     if (completedContainer.innerHTML == "") {
-      labelCompleted.style.display = "flex";
       completedContainer.style.display = "none";
     }
 
@@ -140,11 +140,20 @@ activeContainer.addEventListener("click", function (e) {
       e.target.closest(".to-do-list-item"),
       completedContainer.firstChild
     );
+    activeCount--;
+    tabActive.textContent = `Active (${activeCount})`;
+    completedCount++;
+    tabCompleted.textContent = `Completed (${completedCount})`;
   }
 
   if (activeContainer.innerHTML == "") {
-    labelActive.style.display = "none";
+    // labelActive.style.display = "none";
   }
+
+  // activeCount--;
+  // tabActive.textContent = `Active (${activeCount})`;
+  // completedCount++;
+  // tabCompleted.textContent = `Completed (${completedCount})`;
 });
 
 // MARKING AN ITEM AS NOT DONE
@@ -176,13 +185,16 @@ completedContainer.addEventListener("click", function (e) {
       e.target.closest(".to-do-list-item"),
       activeContainer.firstChild
     );
+    activeCount++;
+    tabActive.textContent = `Active (${activeCount})`;
+    completedCount--;
+    tabCompleted.textContent = `Completed (${completedCount})`;
   }
 
-  if (completedContainer.innerHTML == "") {
-    labelCompleted.style.display = "none";
-    hideShowCompleted.textContent = "Show";
-    hidden = true;
-  }
+  // activeCount++;
+  // tabActive.textContent = `Active (${activeCount})`;
+  // completedCount--;
+  // tabCompleted.textContent = `Completed (${completedCount})`;
 });
 
 // DELETING AN ITEM
@@ -196,25 +208,21 @@ body.addEventListener("click", function (e) {
     item.outerHTML = "";
   }
   if (activeContainer.innerHTML == "") {
-    labelActive.style.display = "none";
-  }
-  if (completedContainer.innerHTML == "") {
-    labelCompleted.style.display = "none";
-    hideShowCompleted.textContent = "Show";
-    hidden = true;
   }
 });
 
-// HIDING THE COMPLETED TASKS
-hideShowCompleted.addEventListener("click", function (e) {
-  e.preventDefault();
-  if (hidden == false) {
+// TAB SELECTION
+tabs.addEventListener("click", function (e) {
+  if (e.target.classList.contains("tab-active")) {
+    activeContainer.style.display = "block";
     completedContainer.style.display = "none";
-    hideShowCompleted.textContent = "Show";
-    hidden = true;
-  } else {
-    completedContainer.style.display = "flex";
-    hideShowCompleted.textContent = "Hide";
-    hidden = false;
+    tabCompleted.classList.remove("tab-current");
+    tabActive.classList.add("tab-current");
+  }
+  if (e.target.classList.contains("tab-completed")) {
+    completedContainer.style.display = "block";
+    activeContainer.style.display = "none";
+    tabActive.classList.remove("tab-current");
+    tabCompleted.classList.add("tab-current");
   }
 });
