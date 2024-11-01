@@ -149,11 +149,6 @@ activeContainer.addEventListener("click", function (e) {
   if (activeContainer.innerHTML == "") {
     // labelActive.style.display = "none";
   }
-
-  // activeCount--;
-  // tabActive.textContent = `Active (${activeCount})`;
-  // completedCount++;
-  // tabCompleted.textContent = `Completed (${completedCount})`;
 });
 
 // MARKING AN ITEM AS NOT DONE
@@ -190,11 +185,6 @@ completedContainer.addEventListener("click", function (e) {
     completedCount--;
     tabCompleted.textContent = `Completed (${completedCount})`;
   }
-
-  // activeCount++;
-  // tabActive.textContent = `Active (${activeCount})`;
-  // completedCount--;
-  // tabCompleted.textContent = `Completed (${completedCount})`;
 });
 
 // DELETING AN ITEM
@@ -205,6 +195,14 @@ body.addEventListener("click", function (e) {
   ) {
     e.preventDefault();
     const item = e.target.closest(".to-do-list-item");
+    if (e.target.closest(".active-container")) {
+      activeCount--;
+      tabActive.textContent = `Active (${activeCount})`;
+    }
+    if (e.target.closest(".completed-container")) {
+      completedCount--;
+      tabCompleted.textContent = `Completed (${completedCount})`;
+    }
     item.outerHTML = "";
   }
   if (activeContainer.innerHTML == "") {
