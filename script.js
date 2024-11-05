@@ -85,6 +85,11 @@ formButton.addEventListener("click", function (e) {
     formInput.focus();
     activeCount++;
     tabActive.textContent = `Active (${activeCount})`;
+    // Activating Active Tab
+    activeContainer.style.display = "block";
+    completedContainer.style.display = "none";
+    tabCompleted.classList.remove("tab-current");
+    tabActive.classList.add("tab-current");
   }
 });
 
