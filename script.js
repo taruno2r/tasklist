@@ -49,24 +49,9 @@ const displayToDo = function (text) {
   if (activeContainer.innerHTML == "") {
     // labelActive.style.display = "block";
   }
-  const now = new Date();
-  const options = {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-  };
   const html = `<div class="to-do-list-item">
         <ion-icon class="icon-done" name="ellipse-outline"></ion-icon>
-        <div class="text-container">
-        <p class="item-date">${new Intl.DateTimeFormat(
-          navigator.locale,
-          options
-        ).format(now)}</p>
         <p class="item-text">${text}</p>
-          </div>
         <button class="icon-button">
           <ion-icon class="icon" name="trash-outline"></ion-icon>
         </button>
@@ -107,15 +92,6 @@ formButton.addEventListener("click", function (e) {
 activeContainer.addEventListener("click", function (e) {
   if (e.target && e.target.classList.contains("icon-done")) {
     e.preventDefault();
-    const now = new Date();
-    const options = {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-    };
 
     if (completedContainer.innerHTML == "") {
       completedContainer.style.display = "none";
@@ -123,11 +99,6 @@ activeContainer.addEventListener("click", function (e) {
 
     const item = e.target.closest(".to-do-list-item");
     const iconButton = item.querySelector(".icon-button");
-    const itemCompletedDateTime = item.querySelector(".item-date");
-    itemCompletedDateTime.textContent = `${new Intl.DateTimeFormat(
-      navigator.locale,
-      options
-    ).format(now)}`;
 
     e.target.style.color = "#2f9e44";
     e.target.setAttribute("name", "checkmark-done-outline");
@@ -135,7 +106,7 @@ activeContainer.addEventListener("click", function (e) {
 
     e.target
       .closest(".to-do-list-item")
-      .querySelector(".text-container").style.opacity = "40%";
+      .querySelector(".item-text").style.opacity = "40%";
     completedContainer.insertBefore(
       e.target.closest(".to-do-list-item"),
       completedContainer.firstChild
@@ -155,27 +126,13 @@ activeContainer.addEventListener("click", function (e) {
 completedContainer.addEventListener("click", function (e) {
   if (e.target && e.target.classList.contains("icon-done")) {
     e.preventDefault();
-    const now = new Date();
-    const options = {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-    };
     const item = e.target.closest(".to-do-list-item");
-    const itemCompletedDateTime = item.querySelector(".item-date");
-    itemCompletedDateTime.textContent = `${new Intl.DateTimeFormat(
-      navigator.locale,
-      options
-    ).format(now)}`;
 
     e.target.style.color = "#333";
 
     e.target
       .closest(".to-do-list-item")
-      .querySelector(".text-container").style.opacity = "100%";
+      .querySelector(".item-text").style.opacity = "100%";
     activeContainer.insertBefore(
       e.target.closest(".to-do-list-item"),
       activeContainer.firstChild
