@@ -109,22 +109,24 @@ activeContainer.addEventListener("click", function (e) {
       completedContainer.style.display = "none";
     }
 
+    // Updating the To Do item with visual changes to show as complete
     const item = e.target.closest(".to-do-list-item");
     const itemCopy = item;
     const iconButton = item.querySelector(".icon-button");
-
     e.target.style.color = "#2f9e44";
     e.target.setAttribute("name", "checkmark-done-outline");
     e.target.setAttribute("background-color", "#2f9e44");
-
     e.target
       .closest(".to-do-list-item")
       .querySelector(".item-text").style.opacity = "40%";
+
+    // Moving the item to completed list
     completedContainer.insertBefore(
       e.target.closest(".to-do-list-item"),
       completedContainer.firstChild
     );
 
+    // Update Tab Count
     activeCount--;
     tabActive.textContent = `Active (${activeCount})`;
     completedCount++;
@@ -137,19 +139,22 @@ activeContainer.addEventListener("click", function (e) {
       // Displaying back the to do if Undo clicked
       if (toastClicked === true) {
         item.style.display = "flex";
+
+        // Undoing all the visual changes of the item
         e.target.style.color = "#333";
         e.target.setAttribute("name", "ellipse-outline");
         e.target.setAttribute("background-color", "#2f9e44");
-
         e.target
           .closest(".to-do-list-item")
           .querySelector(".item-text").style.opacity = "100%";
+
+        // Moving the to do back to Active Tab
         activeContainer.insertBefore(
           e.target.closest(".to-do-list-item"),
           activeContainer.firstChild
         );
 
-        // Updating the to do list count
+        // Updating the Tab count
         activeCount++;
         tabActive.textContent = `Active (${activeCount})`;
         completedCount--;
@@ -170,25 +175,6 @@ activeContainer.addEventListener("click", function (e) {
         );
       }
     })();
-
-    // const item = e.target.closest(".to-do-list-item");
-    // const iconButton = item.querySelector(".icon-button");
-
-    // e.target.style.color = "#2f9e44";
-    // e.target.setAttribute("name", "checkmark-done-outline");
-    // e.target.setAttribute("background-color", "#2f9e44");
-
-    // e.target
-    //   .closest(".to-do-list-item")
-    //   .querySelector(".item-text").style.opacity = "40%";
-    // completedContainer.insertBefore(
-    //   e.target.closest(".to-do-list-item"),
-    //   completedContainer.firstChild
-    // );
-    // activeCount--;
-    // tabActive.textContent = `Active (${activeCount})`;
-    // completedCount++;
-    // tabCompleted.textContent = `Completed (${completedCount})`;
   }
 });
 
