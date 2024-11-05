@@ -46,9 +46,6 @@ const showToast = function () {
 
 // DISPLAYING THE TO DO ITEM
 const displayToDo = function (text) {
-  if (activeContainer.innerHTML == "") {
-    // labelActive.style.display = "block";
-  }
   const html = `<div class="to-do-list-item">
         <ion-icon class="icon-done" name="ellipse-outline"></ion-icon>
         <p class="item-text">${text}</p>
@@ -120,10 +117,6 @@ activeContainer.addEventListener("click", function (e) {
     tabActive.textContent = `Active (${activeCount})`;
     completedCount++;
     tabCompleted.textContent = `Completed (${completedCount})`;
-  }
-
-  if (activeContainer.innerHTML == "") {
-    // labelActive.style.display = "none";
   }
 });
 
