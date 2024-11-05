@@ -29,7 +29,7 @@ let completedCount = 0;
 //FUNCTIONS
 //////////////////
 
-// TOAST MESSAGE
+// SHOW TOAST MESSAGE
 const showToast = function () {
   toast.style.display = "block";
   setTimeout(() => {
@@ -44,7 +44,7 @@ const showToast = function () {
   });
 };
 
-// DISPLAY THE ITEM
+// DISPLAYING THE TO DO ITEM
 const displayToDo = function (text) {
   if (activeContainer.innerHTML == "") {
     // labelActive.style.display = "block";
