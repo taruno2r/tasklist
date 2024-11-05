@@ -111,7 +111,6 @@ activeContainer.addEventListener("click", function (e) {
 
     // Updating the To Do item with visual changes to show as complete
     const item = e.target.closest(".to-do-list-item");
-    const itemCopy = item;
     const iconButton = item.querySelector(".icon-button");
     e.target.style.color = "#2f9e44";
     e.target.setAttribute("name", "checkmark-done-outline");
@@ -121,10 +120,7 @@ activeContainer.addEventListener("click", function (e) {
       .querySelector(".item-text").style.opacity = "40%";
 
     // Moving the item to completed list
-    completedContainer.insertBefore(
-      e.target.closest(".to-do-list-item"),
-      completedContainer.firstChild
-    );
+    completedContainer.insertBefore(item, completedContainer.firstChild);
 
     // Update Tab Count
     activeCount--;
