@@ -20,7 +20,6 @@ activeContainer.innerHTML = "";
 completedContainer.innerHTML = "";
 toast.style.display = "none";
 
-let hidden = true;
 let toastClicked = false;
 let activeCount = 0;
 let completedCount = 0;
@@ -32,15 +31,26 @@ let completedCount = 0;
 // SHOW TOAST MESSAGE
 const showToast = function () {
   toast.style.display = "block";
-  setTimeout(() => {
-    toast.style.display = "none";
-  }, 5000);
-  toast.addEventListener("click", function (e) {
-    if (e.target.classList.contains("toast-button")) {
-      toastClicked = true;
-      console.log(toastClicked);
-      return toastClicked;
-    }
+  let toastClicked = false;
+
+  return new Promise((res) => {
+    const timeout = setTimeout(() => {
+      toast.style.display = "none";
+      res(toastClicked);
+    }, 5000);
+
+    toast.addEventListener(
+      "click",
+      function (e) {
+        if (e.target.classList.contains("toast-button")) {
+          toastClicked = true;
+          clearTimeout(timeout);
+          toast.style.display = "none";
+          res(toastClicked);
+        }
+      },
+      { once: true }
+    );
   });
 };
 
@@ -100,6 +110,7 @@ activeContainer.addEventListener("click", function (e) {
     }
 
     const item = e.target.closest(".to-do-list-item");
+    const itemCopy = item;
     const iconButton = item.querySelector(".icon-button");
 
     e.target.style.color = "#2f9e44";
@@ -113,10 +124,71 @@ activeContainer.addEventListener("click", function (e) {
       e.target.closest(".to-do-list-item"),
       completedContainer.firstChild
     );
+
     activeCount--;
     tabActive.textContent = `Active (${activeCount})`;
     completedCount++;
     tabCompleted.textContent = `Completed (${completedCount})`;
+
+    // Calling the Toast Function and awaiting it's response
+    (async function () {
+      const toastClicked = await showToast();
+
+      // Displaying back the to do if Undo clicked
+      if (toastClicked === true) {
+        item.style.display = "flex";
+        e.target.style.color = "#333";
+        e.target.setAttribute("name", "ellipse-outline");
+        e.target.setAttribute("background-color", "#2f9e44");
+
+        e.target
+          .closest(".to-do-list-item")
+          .querySelector(".item-text").style.opacity = "100%";
+        activeContainer.insertBefore(
+          e.target.closest(".to-do-list-item"),
+          activeContainer.firstChild
+        );
+
+        // Updating the to do list count
+        activeCount++;
+        tabActive.textContent = `Active (${activeCount})`;
+        completedCount--;
+        tabCompleted.textContent = `Completed (${completedCount})`;
+      } else {
+        const iconButton = item.querySelector(".icon-button");
+
+        e.target.style.color = "#2f9e44";
+        e.target.setAttribute("name", "checkmark-done-outline");
+        e.target.setAttribute("background-color", "#2f9e44");
+
+        e.target
+          .closest(".to-do-list-item")
+          .querySelector(".item-text").style.opacity = "40%";
+        completedContainer.insertBefore(
+          e.target.closest(".to-do-list-item"),
+          completedContainer.firstChild
+        );
+      }
+    })();
+
+    // const item = e.target.closest(".to-do-list-item");
+    // const iconButton = item.querySelector(".icon-button");
+
+    // e.target.style.color = "#2f9e44";
+    // e.target.setAttribute("name", "checkmark-done-outline");
+    // e.target.setAttribute("background-color", "#2f9e44");
+
+    // e.target
+    //   .closest(".to-do-list-item")
+    //   .querySelector(".item-text").style.opacity = "40%";
+    // completedContainer.insertBefore(
+    //   e.target.closest(".to-do-list-item"),
+    //   completedContainer.firstChild
+    // );
+    // activeCount--;
+    // tabActive.textContent = `Active (${activeCount})`;
+    // completedCount++;
+    // tabCompleted.textContent = `Completed (${completedCount})`;
   }
 });
 
@@ -158,9 +230,29 @@ body.addEventListener("click", function (e) {
       completedCount--;
       tabCompleted.textContent = `Completed (${completedCount})`;
     }
-    item.outerHTML = "";
-  }
-  if (activeContainer.innerHTML == "") {
+    item.style.display = "none";
+
+    // Calling the Toast Function and awaiting it's response
+    (async function () {
+      const toastClicked = await showToast();
+
+      // Displaying back the to do if Undo clicked
+      if (toastClicked === true) {
+        item.style.display = "flex";
+      } else {
+        item.outerHTML = "";
+      }
+
+      // Updating the to do list count
+      if (e.target.closest(".active-container")) {
+        activeCount++;
+        tabActive.textContent = `Active (${activeCount})`;
+      }
+      if (e.target.closest(".completed-container")) {
+        completedCount++;
+        tabCompleted.textContent = `Completed (${completedCount})`;
+      }
+    })();
   }
 });
 

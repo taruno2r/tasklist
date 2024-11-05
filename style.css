@@ -13,11 +13,12 @@ html {
 body {
   font-family: "Inter", sans-serif;
   max-width: 50rem;
+  height: 100vh;
   margin: 0 auto;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 /**********************/
@@ -138,11 +139,6 @@ body {
   padding: 1rem 2rem;
 }
 
-/* .completed-container {
-  overflow: auto;
-  padding: 0rem 4rem;
-} */
-
 .to-do-list,
 .completed-list {
   display: flex;
@@ -231,7 +227,7 @@ body {
 /**********************/
 
 .toast-container {
-  padding: 0rem 4rem;
+  padding: 2rem 2rem 0rem 2rem;
 }
 
 .toast {
